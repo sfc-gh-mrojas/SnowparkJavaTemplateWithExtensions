@@ -6,6 +6,7 @@ import com.snowflake.snowpark_java.types.*;
 import lombok.experimental.ExtensionMethod;
 import com.snowflake.snowpark_java.extensions.*;
 import static com.snowflake.snowpark_java.Functions.col;
+import static com.snowflake.snowpark_java.Functions.round;
 
 @ExtensionMethod ({Extensions.class})
 public class AppWithExtensions {
@@ -61,8 +62,12 @@ public class AppWithExtensions {
         // Show final result
         result.show();
 
- 
-
+        // For example for
+        // //map
+        // JavaRDD<Integer> mappedRDD = javaRDD.map(val -> (int)Math.round(val));
+        //  
+        DataFrame mapped_df = df.map(val-> val.select(round(col("$0"))));
+        mapped_df.show();
         return df.count();
     }
 

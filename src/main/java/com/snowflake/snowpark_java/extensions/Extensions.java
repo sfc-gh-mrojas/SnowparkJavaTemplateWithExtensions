@@ -288,4 +288,15 @@ public class Extensions {
         return df.rename(newName, col(oldName));
     }
 
+    public static DataFrame map(DataFrame df, MapFunction<DataFrame,DataFrame> mapper) {
+
+        try {
+            return mapper.call(df);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        
+    } 
+
+
 }
