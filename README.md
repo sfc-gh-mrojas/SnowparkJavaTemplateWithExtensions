@@ -1,6 +1,27 @@
-# Java Project Template for Snowpark
+# Java Project for Snowpark
 
-Use this template to start writing data applications on Snowflake using Java.
+This project is based on a template to work with Snowpark Java project.
+
+The purpose of this project is mostly to showcase how Lombok can be used to ease the migration from Spark.
+
+Usually one challenge when migrating from Spark to Snowpark is due the API discrepancies.
+
+With Lombok we create some extensions that allow the introduction of extensions methods that help in many of those scenarios.
+
+To enable the Extensions you need to:
+
+1. Modify your pom. Lombok must be added to the dependencies and to the build plugins.
+2. Add the Extensions.java to your code base
+3. In the files where you will use it do this:
+a. Add imports:
+```
+import lombok.experimental.ExtensionMethod;
+import com.snowflake.snowpark_java.extensions.*;
+```
+b. At the top of your class add this line:
+```
+@ExtensionMethod ({Extensions.class})
+```
 
 ## Setup
 
@@ -70,8 +91,3 @@ The GitHub Actions [workflow file](.github/workflows/build-and-deploy.yml) allow
 - [Developer Guide](https://docs.snowflake.com/developer-guide/snowpark/java/index.html)
 - [Writing Stored Procedures](https://docs.snowflake.com/en/sql-reference/stored-procedures-java.html)
 
-## Contributing
-
-Have a question or ran into a bug? Please [file an issue](https://github.com/Snowflake-Labs/snowpark-java-template/issues/new) and let us know.
-
-Have an idea for an improvement? Fork this repository and open a PR with your idea!
